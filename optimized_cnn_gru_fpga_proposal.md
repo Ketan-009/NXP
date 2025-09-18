@@ -4,7 +4,7 @@
 
 ## ABSTRACT
 
-This proposal presents a novel edge-computing framework for brain tumor detection from MRI using a hybrid CNN–GRU model deployed on the Lattice CPNX FPGA (Platform 1). The design achieves <200 ms inference latency, <3 W power, and >95% accuracy, significantly outperforming CPU/GPU-based approaches in energy efficiency. Key innovations include: (1) an RTL on-chip preprocessing block that reduces CPU preprocessing load by ~50%, (2) a resource-aware tiling + double buffering scheme for efficient block RAM utilization, (3) adaptive quantization-aware training with channel pruning achieving 40–60% model reduction with <2% accuracy loss, and (4) a hybrid computation partition, where CNN inference runs on FPGA and GRU modeling on ARM CPU, with exploration of FPGA-only GRU acceleration. Robust validation will be performed on BraTS, Figshare, and clinical MRI datasets. The proposed framework enables low-cost, privacy-preserving, AI-assisted diagnosis in rural healthcare, mobile units, and telemedicine.
+This proposal presents a novel edge-computing framework for brain tumor detection from MRI using a hybrid CNN–GRU model deployed on the Lattice CPNX FPGA (Platform 1). The design achieves <200 ms inference latency, <3 W power, and >95% accuracy, significantly outperforming CPU/GPU-based approaches in energy efficiency. Key innovations include: (1) an RTL on-chip preprocessing block that reduces CPU preprocessing load by ~50%, (2) a resource-aware tiling + double buffering scheme for efficient block RAM utilization, (3) adaptive quantization-aware training with channel pruning achieving 40–60% model reduction with <2% accuracy loss, and (4) a hybrid computation partition, where CNN inference runs on FPGA and GRU modeling on ARM CPU, with exploration of FPGA-only GRU acceleration. Robust validation will be performed on BraTS, Figshare, and clinical MRI datasets with preliminary deployment already achieved on the KRIA KV260 FPGA board using an INT8-quantized XModel. The proposed framework enables low-cost, privacy-preserving, AI-assisted diagnosis in rural healthcare, mobile units, and telemedicine.
 
 ## MAIN IDEA
 
@@ -21,6 +21,10 @@ We propose a low-power FPGA-based CNN–GRU system for real-time brain tumor det
 **Post-processing:** Confidence scoring and ROI overlay (~20 ms).
 
 ### Optimization Techniques
+Building on our prior deployment of an INT8-quantized CNN XModel on the KRIA KV260 board (achieving <200 ms latency and <3 W power), this proposal extends the design by adding:
+a custom on-chip preprocessing RTL pipeline,
+a resource-aware tiling + buffering scheme, and
+a hybrid CNN–GRU partitioning architecture optimized for Platform 1 (Lattice CPNX).
 
 - Tiling + double buffering → 85% bandwidth utilization, hides 15–20 ms latency.
 - Quantization + pruning → 60% model size reduction, <2% accuracy loss.
