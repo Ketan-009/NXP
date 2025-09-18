@@ -45,7 +45,7 @@ a hybrid CNN–GRU partitioning architecture optimized for Platform 1 (Lattice C
 ## VALUE ADD
 
 ### Novelty
-
+Unlike prior works or our own earlier KRIA-only XModel deployment, this proposal integrates full RTL preprocessing, resource-aware quantization, and hybrid CNN–GRU execution to push the boundary of low-power medical AI on FPGA platforms.
 - First FPGA CNN–GRU design with complete on-chip preprocessing.
 - Resource-aware quantization tailored to Lattice CPNX constraints.
 - Hybrid architecture balancing FPGA parallelism and CPU sequential processing.
